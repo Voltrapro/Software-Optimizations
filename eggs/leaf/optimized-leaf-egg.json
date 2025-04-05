@@ -1,18 +1,76 @@
-#!/bin/ash
-# shellcheck shell=dash
-
-# Fetch latest Leaf version from GitHub API
-LATEST_TAG=$(curl -s https://api.github.com/repos/Winds-Studio/Leaf/releases/latest | jq -r '.tag_name')
-VERSION=$(echo "${LATEST_TAG}" | sed 's/^ver-//')
-DOWNLOAD_URL="https://github.com/Winds-Studio/Leaf/releases/download/${LATEST_TAG}/leaf-${VERSION}.jar"
-
-cd /mnt/server || exit
-printf "Downloading Leaf version %s\n" "${VERSION}"
-
-# Backup existing server.jar if present
-[ -f "server.jar" ] && mv server.jar server.jar.old
-
-# Download with follow redirects and show progress
-curl -L -# -o server.jar "${DOWNLOAD_URL}"
-
-printf "Successfully updated to Leaf %s\n" "${VERSION}"
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2024-04-25T14:14:00+02:00",
+    "name": "LeafMC - Voltra Optimized",
+    "author": "eggs@voltra.pro",
+    "description": "Optimized by Voltra.pro for Minecraft server owners, delivering peak performance and frequent updates for the best gaming experience.",
+    "features": [
+        "eula"
+    ],
+    "docker_images": {
+        "ghcr.io\/pterodactyl\/yolks:java_21": "ghcr.io\/pterodactyl\/yolks:java_21",
+        "ghcr.io\/pterodactyl\/yolks:java_19j9": "ghcr.io\/pterodactyl\/yolks:java_19j9",
+        "ghcr.io\/pterodactyl\/yolks:java_19": "ghcr.io\/pterodactyl\/yolks:java_19",
+        "ghcr.io\/pterodactyl\/yolks:java_18j9": "ghcr.io\/pterodactyl\/yolks:java_18j9",
+        "ghcr.io\/pterodactyl\/yolks:java_18": "ghcr.io\/pterodactyl\/yolks:java_18",
+        "ghcr.io\/pterodactyl\/yolks:java_17j9": "ghcr.io\/pterodactyl\/yolks:java_17j9",
+        "ghcr.io\/pterodactyl\/yolks:java_17": "ghcr.io\/pterodactyl\/yolks:java_17",
+        "ghcr.io\/pterodactyl\/yolks:java_16j9": "ghcr.io\/pterodactyl\/yolks:java_16j9",
+        "ghcr.io\/pterodactyl\/yolks:java_16": "ghcr.io\/pterodactyl\/yolks:java_16",
+        "ghcr.io\/pterodactyl\/yolks:java_11j9": "ghcr.io\/pterodactyl\/yolks:java_11j9",
+        "ghcr.io\/pterodactyl\/yolks:java_11": "ghcr.io\/pterodactyl\/yolks:java_11",
+        "ghcr.io\/pterodactyl\/yolks:java_8j9": "ghcr.io\/pterodactyl\/yolks:java_8j9",
+        "ghcr.io\/pterodactyl\/yolks:java_8": "ghcr.io\/pterodactyl\/yolks:java_8"
+    },
+    "file_denylist": [],
+    "startup": "java -Xms256M -Xmx{{SERVER_MEMORY}}M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https:\/\/mcflags.emc.gs\/ -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 --add-modules=jdk.incubator.vector -jar {{SERVER_JARFILE}} --nogui",
+    "config": {
+        "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server-ip\": \"0.0.0.0\",\r\n            \"server-port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \")! For help, type \",\r\n    \"userInteraction\": [\r\n        \"Go to eula.txt for more info.\"\r\n    ]\r\n}",
+        "logs": "{}",
+        "stop": "stop"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/ash; LATEST_RELEASE=$(curl -s https://api.github.com/repos/Winds-Studio/Leaf/releases/latest); LATEST_TAG=$(echo \"$LATEST_RELEASE\" | jq -r '.tag_name'); VERSION=$(echo \"$LATEST_TAG\" | sed 's/^ver-//'); ASSET_URL=$(echo \"$LATEST_RELEASE\" | jq -r '.assets[0].browser_download_url'); RELEASE_BODY=$(echo \"$LATEST_RELEASE\" | jq -r '.body'); MD5_CHECKSUM=$(echo \"$RELEASE_BODY\" | grep -m1 \"MD5\" | awk '{print $3}'); SHA256_CHECKSUM=$(echo \"$RELEASE_BODY\" | grep -m1 \"SHA256\" | awk '{print $3}'); cd /mnt/server || exit; printf \"Downloading Leaf version %s\\n\" \"$VERSION\"; [ -f \"server.jar\" ] && mv server.jar server.jar.old; curl -L -# -o server.jar \"$ASSET_URL\"; printf \"Downloading optimized configuration files\\n\"; [ ! -d \"config\" ] && mkdir config; [ ! -f \"server.properties\" ] && curl -o server.properties https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/server.properties; [ ! -f \"bukkit.yml\" ] && curl -o bukkit.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/bukkit.yml; [ ! -f \"spigot.yml\" ] && curl -o spigot.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/spigot.yml; [ ! -f \"config/paper-global.yml\" ] && curl -o config/paper-global.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/paper-global.yml; [ ! -f \"config/paper-world-defaults.yml\" ] && curl -o config/paper-world-defaults.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/paper-world-defaults.yml; [ ! -f \"pufferfish.yml\" ] && curl -o pufferfish.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizations/configs/pufferfish.yml; [ ! -f \"config/purpur.yml\" ] && curl -o purpur.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/purpur.yml;",
+            "container": "ghcr.io\/pterodactyl\/installers:alpine",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Minecraft Version",
+            "description": "",
+            "env_variable": "MINECRAFT_VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Jar",
+            "description": "The name given to the server jar file. This is not user viewable.",
+            "env_variable": "SERVER_JARFILE",
+            "default_value": "server.jar",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Build Number",
+            "description": "The build number for the paper release.\r\n\r\nLeave at latest to always get the latest version. Invalid versions will default to latest.",
+            "env_variable": "BUILD_NUMBER",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        }
+    ]
+}
