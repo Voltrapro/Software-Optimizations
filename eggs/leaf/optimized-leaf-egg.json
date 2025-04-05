@@ -1,0 +1,18 @@
+#!/bin/ash
+# shellcheck shell=dash
+
+# Fetch latest Leaf version from GitHub API
+LATEST_TAG=$(curl -s https://api.github.com/repos/Winds-Studio/Leaf/releases/latest | jq -r '.tag_name')
+VERSION=$(echo "${LATEST_TAG}" | sed 's/^ver-//')
+DOWNLOAD_URL="https://github.com/Winds-Studio/Leaf/releases/download/${LATEST_TAG}/leaf-${VERSION}.jar"
+
+cd /mnt/server || exit
+printf "Downloading Leaf version %s\n" "${VERSION}"
+
+# Backup existing server.jar if present
+[ -f "server.jar" ] && mv server.jar server.jar.old
+
+# Download with follow redirects and show progress
+curl -L -# -o server.jar "${DOWNLOAD_URL}"
+
+printf "Successfully updated to Leaf %s\n" "${VERSION}"
