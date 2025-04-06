@@ -28,29 +28,25 @@ if [ ! -d "config" ]; then
 fi
 
 if [ ! -f "server.properties" ]; then
-    curl -o server.properties https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/server.properties
+    curl -o server.properties https://raw.githubusercontent.com/Voltrapro/Software-Optimizations/refs/heads/main/eggs/leaf/config/server.properties
 fi
 
 if [ ! -f "bukkit.yml" ]; then
-    curl -o bukkit.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/bukkit.yml
+    curl -o bukkit.yml https://raw.githubusercontent.com/Voltrapro/Software-Optimizations/refs/heads/main/eggs/leaf/config/bukkit.yml
 fi
 
 if [ ! -f "spigot.yml" ]; then
-    curl -o spigot.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/spigot.yml
+    curl -o spigot.yml https://raw.githubusercontent.com/Voltrapro/Software-Optimizations/refs/heads/main/eggs/leaf/config/spigot.yml
 fi
 
 if [ ! -f "config/paper-global.yml" ]; then
-    curl -o config/paper-global.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/paper-global.yml
+    curl -o config/paper-global.yml https://raw.githubusercontent.com/Voltrapro/Software-Optimizations/refs/heads/main/eggs/leaf/config/world/paper-global.yml
 fi
 
 if [ ! -f "config/paper-world-defaults.yml" ]; then
-    curl -o config/paper-world-defaults.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/paper-world-defaults.yml
-fi
-
-if [ ! -f "pufferfish.yml" ]; then
-    curl -o pufferfish.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizations/configs/pufferfish.yml
+    curl -o config/paper-world-defaults.yml https://raw.githubusercontent.com/Voltrapro/Software-Optimizations/refs/heads/main/eggs/leaf/config/world/paper-world-defaults.yml
 fi
 
 if [ ! -f "config/purpur.yml" ]; then
-    curl -o purpur.yml https://raw.githubusercontent.com/voltrapro/Software-Optimizationsmain/configs/purpur.yml
+    curl -o purpur.yml https://raw.githubusercontent.com/Voltrapro/Software-Optimizations/refs/heads/main/eggs/leaf/config/purpur.yml
 fi
