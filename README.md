@@ -26,8 +26,8 @@ This repository is available under the MIT license. If you operate a hosting ser
 
 The optimization changes implemented in this project are inspired by various guides, carefully modified and curated to ensure the best configurations for a seamless experience. Below are the resources that served as the foundation for these optimizations:
 
-- [Minecraft Optimization Guide](https://github.com/YouHaveTrouble/minecraft-optimization)
-- [Paper Optimization Guide](https://paper-chan.moe/paper-optimization/)
-- [Spigot Server Optimization Guide](https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/)
+- [YouHaveTrouble's Optimization Guide](https://github.com/YouHaveTrouble/minecraft-optimization)
+- [Paper-chan's Optimization Guide](https://paper-chan.moe/paper-optimization/)
+- [Celebrimbor's Optimization Guide](https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/)
 
 Each of these guides has been meticulously reviewed, and only the most effective configurations have been selected to enhance server performance while maintaining gameplay quality.
