@@ -12,7 +12,7 @@
         "eula"
     ],
     "docker_images": {
-        "ghcr.io\/argon-foss\/images:java_23": "ghcr.io\/argon-foss\/yolks:java_23",
+        "ghcr.io\/argon-foss\/images:java_23": "ghcr.io\/argon-foss\/images:java_23",
         "ghcr.io\/pterodactyl\/yolks:java_21": "ghcr.io\/pterodactyl\/yolks:java_21",
         "ghcr.io\/pterodactyl\/yolks:java_19j9": "ghcr.io\/pterodactyl\/yolks:java_19j9",
         "ghcr.io\/pterodactyl\/yolks:java_19": "ghcr.io\/pterodactyl\/yolks:java_19",
